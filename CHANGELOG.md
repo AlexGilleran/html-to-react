@@ -1,3 +1,9 @@
+## 0.1.3
+
+### Bug Fixes
+
+* Fixed [\#29](https://github.com/mikenikles/html-to-react/issues/29) - Img, br and hr tags produce warnings
+
 ## 0.1.2 (January 19, 2016)
 
 ### Bug Fixes

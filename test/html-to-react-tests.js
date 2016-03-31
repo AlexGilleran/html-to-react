@@ -81,6 +81,15 @@ describe('Html2React', function() {
             assert.equal(reactHtml, htmlInput);
         });
 
+        it('should return a valid HTML with br, hr and img', function() {
+            var htmlInput = '<div><p>Hello<br/>Goodbye</p><hr/><img src="www.example.com"/></div>';
+
+            var reactComponent = parser.parse(htmlInput);
+            var reactHtml = ReactDOMServer.renderToStaticMarkup(reactComponent);
+
+            assert.equal(reactHtml, htmlInput);
+        });
+
         // FIXME: See lib/process-node-definitions.js -> processDefaultNode()
         it.skip('should return a valid HTML string with comments', function() {
             var htmlInput = '<div><!-- This is a comment --></div>';

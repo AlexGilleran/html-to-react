@@ -2,7 +2,7 @@
 
 var assert = require("assert");
 var React = require('react');
-var ReactDOMServer = require('react-dom/server')
+var ReactDOMServer = require('react-dom/server');
 
 var Parser = require('../index').Parser;
 var ProcessNodeDefinitions = require('../index').ProcessNodeDefinitions;
@@ -11,9 +11,9 @@ describe('Html2React', function() {
     var parser = new Parser(React);
 
     before(function() {
-      console.error = function(message) {
-        throw new Error(message);
-      };
+        console.error = function(message) {
+            throw new Error(message);
+        };
     })
 
     describe('parse valid HTML', function() {
@@ -121,7 +121,14 @@ describe('Html2React', function() {
 
         it('should parse void elements with all attributes and no warnings', function() {
             var htmlInput = '<p><img src="www.google.ca/logo.png"/></p>';
+            var reactComponent = parser.parse(htmlInput);
+            var reactHtml = ReactDOMServer.renderToStaticMarkup(reactComponent);
 
+            assert.equal(reactHtml, htmlInput);
+        });
+
+        it('should decode character entities in text nodes', function () {
+            var htmlInput = '<div>1 &lt; 2</div>';
             var reactComponent = parser.parse(htmlInput);
             var reactHtml = ReactDOMServer.renderToStaticMarkup(reactComponent);
 
